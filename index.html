@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#210d17">
+<title>20/10 | Dành tặng Chị Nhi</title>
+<style>
+:root{
+  --night:#170b12;--wine:#451627;--rose:#b72e55;--rose-light:#f1a2b6;
+  --gold:#e8c77a;--cream:#fff4e8;--muted:#d8b8c2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--cream);font-family:"Segoe UI",Arial,sans-serif;overflow-x:hidden;
+  background:
+    radial-gradient(ellipse at 15% 10%,#70203b55,transparent 34rem),
+    radial-gradient(ellipse at 90% 45%,#5a183955,transparent 32rem),
+    linear-gradient(160deg,#170b12,#24101b 52%,#140910);
+}
+button,a{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+#fireworks{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+#petals,#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+#petals{z-index:5}#hearts{z-index:31}
+header{
+  position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;
+  align-items:center;padding:22px clamp(18px,5vw,70px)
+}
+.logo{font-size:.78rem;letter-spacing:.22em;color:var(--gold);font-weight:800}
+.music{
+  border:1px solid #d9b86d88;border-radius:99px;background:#26121dcc;color:var(--cream);
+  padding:11px 17px;backdrop-filter:blur(10px);transition:.25s
+}
+.music:hover{background:#4a1b30;transform:translateY(-2px)}
+.hero{
+  min-height:100svh;display:grid;place-items:center;text-align:center;position:relative;isolation:isolate;
+  padding:125px 20px 75px;overflow:hidden
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;border:1px solid #d7b46b38;border-radius:50%;width:min(78vw,760px);
+  aspect-ratio:1;z-index:-1;animation:orbit 35s linear infinite
+}
+.hero:after{width:min(62vw,600px);animation-direction:reverse;border-style:dashed;opacity:.65}
+.corner{position:absolute;color:#d8b46a77;font-size:clamp(3rem,9vw,8rem);line-height:1}
+.corner.one{top:17%;left:7%}.corner.two{right:8%;bottom:12%}
+.hero-content{max-width:920px}
+.eyebrow{
+  display:inline-block;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;font-size:.76rem;
+  padding:11px 17px;border-top:1px solid #d8b46a88;border-bottom:1px solid #d8b46a88
+}
+h1{
+  font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:.99;letter-spacing:-.055em;
+  font-size:clamp(3.7rem,10.5vw,8.5rem);margin:28px 0 20px;
+  background:linear-gradient(115deg,#fff4d6 8%,#e7c36e 34%,#fff0dc 51%,#d8879f 76%,#f8d7bf);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+h1 small{display:block;font-family:"Segoe UI",sans-serif;font-size:clamp(.85rem,2vw,1.2rem);font-weight:500;
+  letter-spacing:.25em;line-height:1.6;margin-top:25px;color:#f0c8ce;-webkit-text-fill-color:#f0c8ce}
+.hero p{max-width:660px;margin:0 auto;color:#e5cbd1;line-height:1.9;font-size:clamp(1rem,2.2vw,1.2rem)}
+.gold{color:var(--gold)}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #d8b46b;
+  border-radius:3px;padding:14px 22px;color:#24101a;background:linear-gradient(135deg,#f1d995,#c89b45);
+  font-weight:800;letter-spacing:.025em;box-shadow:0 8px 30px #0003;transition:transform .25s,filter .25s
+}
+.btn:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.btn.ghost{background:#170b1280;color:var(--cream);border-color:#d8b46b99;box-shadow:none}
+.scroll{display:block;color:#b993a0;font-size:.8rem;letter-spacing:.13em;margin-top:34px}
+section{padding:88px 20px;position:relative}
+.wrap{width:min(1080px,100%);margin:0 auto}
+.heading{text-align:center;margin:0 auto 38px;max-width:720px}
+.kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:800}
+h2{font:400 clamp(2.2rem,5vw,4rem)/1.15 Georgia,serif;color:#f2d6ae;margin:14px 0}
+.heading p{line-height:1.8;color:var(--muted);margin:0}
+.ornament{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:20px auto}
+.ornament:before,.ornament:after{content:"";height:1px;width:54px;background:linear-gradient(90deg,transparent,var(--gold))}
+.ornament:after{transform:rotate(180deg)}
+.letter{
+  max-width:830px;margin:auto;padding:clamp(26px,5vw,56px);position:relative;
+  background:linear-gradient(145deg,#fff8ee0d,#c68b9c0b);border:1px solid #d8b46a66;
+  box-shadow:0 25px 70px #0003;backdrop-filter:blur(8px)
+}
+.letter:before,.letter:after{content:"✦";position:absolute;color:var(--gold);font-size:1.1rem}
+.letter:before{top:14px;left:16px}.letter:after{bottom:14px;right:16px}
+.letter-text{white-space:pre-line;min-height:180px;color:#f0dce0;font:clamp(1rem,2vw,1.12rem)/2 Georgia,serif}
+.signature{text-align:right;color:var(--gold);font:italic 1.25rem Georgia,serif;margin-top:25px}
+.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.photo{
+  min-height:300px;position:relative;overflow:hidden;border:1px solid #d8b46a66;
+  background:linear-gradient(145deg,#572039,#26111c);display:flex;align-items:flex-end;
+  box-shadow:0 18px 45px #0003
+}
+.photo:before{
+  content:"✧";position:absolute;top:23px;left:0;right:0;text-align:center;font-size:4rem;
+  color:#e8c77a77;z-index:1
+}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.photo:hover img{transform:scale(1.07)}
+.photo-shade{position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#170912ed);z-index:2}
+.photo-caption{position:relative;z-index:3;padding:22px;width:100%}
+.photo-caption strong{font:1.3rem Georgia,serif;color:#f6dca8;display:block}
+.photo-caption span{display:block;font-size:.85rem;line-height:1.6;color:#e7cbd2;margin-top:7px}
+.gallery-note{text-align:center;color:#ba96a3;line-height:1.8;font-size:.9rem;margin-top:20px}
+.gift-section{text-align:center}
+.gift{
+  width:min(230px,65vw);aspect-ratio:1;position:relative;border:0;background:none;
+  filter:drop-shadow(0 18px 25px #0005);transition:transform .25s
+}
+.gift:hover{transform:translateY(-6px) rotate(-2deg)}
+.box-body{position:absolute;left:15%;bottom:10%;width:70%;height:49%;background:linear-gradient(120deg,#a82b51,#5e172f);border:2px solid #e8c77a;border-radius:3px}
+.box-lid{position:absolute;left:9%;bottom:56%;width:82%;height:17%;background:linear-gradient(120deg,#f0d58e,#bd9142);border:2px solid #fff0bf;border-radius:3px}
+.box-ribbon{position:absolute;left:43%;bottom:10%;height:63%;width:14%;background:#e8c77a;border-left:1px solid #fff1bd;border-right:1px solid #fff1bd}
+.bow{position:absolute;left:34%;bottom:69%;width:32%;height:19%}
+.bow:before,.bow:after{content:"";position:absolute;width:52%;height:85%;border:2px solid #fff0bf;background:#d6af61;border-radius:80% 10% 80% 10%}
+.bow:before{left:0;transform:rotate(25deg)}.bow:after{right:0;transform:scaleX(-1) rotate(25deg)}
+.gift-hint{color:#c9a6b2;margin:5px 0 25px}
+.surprise{
+  display:none;max-width:730px;margin:25px auto 0;padding:clamp(25px,5vw,42px);
+  background:#2a111f;border:1px solid #d8b46a88;box-shadow:0 18px 55px #0004;animation:reveal .6s ease both
+}
+.surprise.show{display:block}
+.surprise h3{font:400 clamp(1.7rem,4vw,2.5rem) Georgia,serif;color:var(--gold);margin:0 0 16px}
+.surprise p{line-height:1.95;color:#ecd5dc;margin:0}
+footer{text-align:center;padding:32px 20px 45px;border-top:1px solid #d8b46a30;color:#b993a0;font-size:.85rem;line-height:1.9}
+footer strong{color:var(--gold);font-weight:600}
+.petal{
+  position:absolute;top:-150px;user-select:none;will-change:transform;opacity:.86;
+  animation:petalFall linear forwards;filter:drop-shadow(0 9px 12px #0004);
+}
+.heart{position:absolute;bottom:-50px;animation:heartUp ease-out forwards;filter:drop-shadow(0 0 10px #ff709b55)}
+.toast{
+  position:fixed;z-index:40;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;
+  max-width:calc(100vw - 30px);width:max-content;text-align:center;padding:12px 18px;
+  background:#3a1727;border:1px solid #d8b46b99;color:#ffe8c0;transition:.3s;pointer-events:none
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes petalFall{
+  0%{transform:translate3d(0,-10vh,0) rotate(0deg);opacity:0}
+  10%{opacity:.9}
+  100%{transform:translate3d(var(--drift),115vh,0) rotate(var(--spin));opacity:.12}
+}
+@keyframes heartUp{0%{transform:translateY(0) scale(.7);opacity:0}15%{opacity:1}100%{transform:translateY(-115vh) scale(1.35) rotate(30deg);opacity:0}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes reveal{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:760px){
+  header{padding:16px}.logo{font-size:.65rem;letter-spacing:.12em}.music{padding:9px 12px;font-size:.85rem}
+  .hero{min-height:92svh}.hero:before{width:90vw}.hero:after{width:73vw}
+  section{padding:65px 17px}.gallery{grid-template-columns:1fr}.photo{min-height:280px}
+  .corner.one{left:3%;top:13%}.corner.two{right:3%;bottom:8%}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* ===== MÀN HÌNH KHÓA MẬT MÃ 4 SỐ ===== */
+body.locked{overflow:hidden}
+.lock-screen{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;
+  background:
+    radial-gradient(ellipse at 20% 15%,#7b234855,transparent 35rem),
+    radial-gradient(ellipse at 80% 85%,#7b234844,transparent 32rem),
+    rgba(17,6,12,.98);
+  backdrop-filter:blur(16px);transition:opacity .65s ease,visibility .65s ease;
+}
+.lock-screen.unlocked{opacity:0;visibility:hidden;pointer-events:none}
+.lock-card{
+  width:min(420px,100%);padding:clamp(25px,6vw,42px) 25px 28px;text-align:center;
+  border:1px solid #d8b46b88;background:linear-gradient(145deg,#311322ee,#1c0c16f5);
+  box-shadow:0 30px 100px #0008;position:relative
+}
+.lock-flower{font-size:2.7rem;margin-bottom:9px;filter:drop-shadow(0 5px 12px #ed789e33)}
+.lock-kicker{font-size:.65rem;letter-spacing:.24em;color:var(--gold);font-weight:800}
+.lock-card h2{font:400 clamp(1.8rem,6vw,2.3rem)/1.15 Georgia,serif;color:#f2d6ae;margin:15px 0 10px}
+.lock-description{color:#d8b8c2;font-size:.94rem;line-height:1.7;margin:0 auto 22px}
+.pin-dots{display:flex;justify-content:center;gap:17px;margin:22px 0 24px}
+.pin-dot{width:13px;height:13px;border:1px solid #e8c77a;border-radius:50%;background:transparent;transition:background .15s,transform .15s}
+.pin-dot.filled{background:#e8c77a;transform:scale(1.12);box-shadow:0 0 13px #e8c77a66}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:300px;margin:0 auto}
+.keypad button{
+  height:53px;border:1px solid #d8b46a55;background:#ffffff08;color:#fff1e1;
+  font-size:1.15rem;border-radius:2px;transition:background .15s,transform .15s
+}
+.keypad button:hover,.keypad button:focus-visible{background:#8b2b4b88;outline:1px solid #e8c77a}
+.keypad button:active{transform:scale(.96)}
+.keypad button.key-action{font-size:.83rem;color:#e8c77a}
+.lock-error{min-height:24px;margin:13px 0 0;color:#ff9eb4;font-size:.88rem}
+.lock-hint{color:#a98291;font-size:.77rem;margin:8px 0 0}
+@keyframes lockShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+.lock-card.shake{animation:lockShake .35s ease}
+@media(max-width:400px){.lock-card{padding:24px 17px}.keypad{gap:8px}.keypad button{height:49px}}
+
+</style>
+</head>
+<body>
+
+<div class="lock-screen" id="lockScreen" role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+  <div class="lock-card">
+    <div class="lock-flower" aria-hidden="true">🌹</div>
+    <div class="lock-kicker">A LITTLE SECRET FOR YOU</div>
+    <h2 id="lockTitle">Món quà dành riêng cho Chị Nhi</h2>
+    <p class="lock-description">Nhập mật mã 4 chữ số để mở món quà 20/10 nhé.</p>
+    <div class="pin-dots" aria-label="Mật khẩu gồm 4 chữ số">
+      <span class="pin-dot" id="dot0"></span><span class="pin-dot" id="dot1"></span>
+      <span class="pin-dot" id="dot2"></span><span class="pin-dot" id="dot3"></span>
+    </div>
+    <div class="keypad" id="keypad" aria-label="Bàn phím nhập mật mã">
+      <button type="button" data-digit="1">1</button><button type="button" data-digit="2">2</button><button type="button" data-digit="3">3</button>
+      <button type="button" data-digit="4">4</button><button type="button" data-digit="5">5</button><button type="button" data-digit="6">6</button>
+      <button type="button" data-digit="7">7</button><button type="button" data-digit="8">8</button><button type="button" data-digit="9">9</button>
+      <button type="button" class="key-action" data-action="clear">Xóa</button><button type="button" data-digit="0">0</button><button type="button" class="key-action" data-action="back">⌫</button>
+    </div>
+    <p class="lock-error" id="lockError" aria-live="polite"></p>
+    <p class="lock-hint">Gợi ý: Mật khẩu là ngày tháng sinh nhật</p>
+  </div>
+</div>
+
+<div id="petals" aria-hidden="true"></div>
+<div id="hearts" aria-hidden="true"></div>
+<canvas id="fireworks" aria-hidden="true"></canvas>
+
+<header>
+  <div class="logo">✦ A LITTLE GIFT OF LOVE ✦</div>
+  <button class="music" id="musicBtn" type="button" aria-pressed="false">♫ Bật nhạc nền</button>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="corner one">✧</div><div class="corner two">❧</div>
+    <div class="hero-content">
+      <div class="eyebrow">20 · 10 &nbsp; | &nbsp; Ngày của yêu thương</div>
+      <h1>For You,<small>CHỊ NHI · HAPPY VIETNAMESE WOMEN'S DAY</small></h1>
+      <p>
+        Một chút dịu dàng, một chút lấp lánh và thật nhiều lời chúc tốt đẹp
+        gửi đến <span class="gold"><strong>Chị Nhi</strong></span> trong ngày đặc biệt.
+        Mong chị luôn rạng rỡ như đóa hồng và hạnh phúc theo cách riêng của mình.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#loi-chuc">✧ Khám phá lời chúc</a>
+        <button class="btn ghost" id="heroFireworks" type="button">✦ Thắp sáng bầu trời</button>
+      </div>
+      <span class="scroll">MỘT MÓN QUÀ NHỎ · CHỨA ĐẦY YÊU THƯƠNG ↓</span>
+    </div>
+  </section>
+
+  <section id="loi-chuc">
+    <div class="wrap">
+      <div class="heading">
+        <div class="kicker">A letter from the heart</div>
+        <h2>Gửi Chị Nhi thân mến</h2>
+        <div class="ornament">✦</div>
+        <p>Mong những dòng chữ nhỏ này mang đến cho chị một nụ cười thật tươi.</p>
+      </div>
+      <article class="letter">
+        <div class="letter-text" id="letterText" aria-live="polite"></div>
+        <div class="signature">Trân trọng và thương mến, ♡</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="album">
+    <div class="wrap">
+      <div class="heading">
+        <div class="kicker">Moments to treasure</div>
+        <h2>Album những ngày đáng nhớ</h2>
+        <div class="ornament">❧</div>
+        <p>Mỗi kỷ niệm đều là một điều quý giá. Hãy thêm những bức ảnh thân thương để món quà này trở nên thật riêng biệt.</p>
+      </div>
+      <div class="gallery">
+        <article class="photo">
+          <!-- Để dùng ảnh thật, bỏ dòng placeholder và thêm: <img src="images/ky-niem-1.jpg" alt="Kỷ niệm cùng Chị Nhi"> -->
+          <div class="photo-shade"></div><div class="photo-caption"><strong>Những ngày rực rỡ</strong><span>Niềm vui luôn đẹp hơn khi được sẻ chia.</span></div>
+        </article>
+        <article class="photo">
+          <!-- Thay bằng ảnh: <img src="images/ky-niem-2.jpg" alt="Khoảnh khắc đáng nhớ"> -->
+          <div class="photo-shade"></div><div class="photo-caption"><strong>Nụ cười thân quen</strong><span>Giữ lại những điều giản dị mà đáng yêu.</span></div>
+        </article>
+        <article class="photo">
+          <!-- Thay bằng ảnh: <img src="images/ky-niem-3.jpg" alt="Ảnh kỷ niệm"> -->
+          <div class="photo-shade"></div><div class="photo-caption"><strong>Kỷ niệm còn mãi</strong><span>Mong những ngày phía trước luôn ngập tràn tiếng cười.</span></div>
+        </article>
+      </div>
+      <p class="gallery-note">Gợi ý: tạo thư mục <strong>images</strong> cùng cấp với index.html, thêm ảnh vào đó và dùng thẻ <code>&lt;img src="images/ky-niem-1.jpg" alt="Kỷ niệm"&gt;</code> bên trong từng khung.</p>
+    </div>
+  </section>
+
+  <section class="gift-section" id="qua-tang">
+    <div class="wrap">
+      <div class="heading">
+        <div class="kicker">A special surprise</div>
+        <h2>Chiếc hộp nhỏ bí mật</h2>
+        <div class="ornament">✦</div>
+        <p>Trong chiếc hộp này có một lời chúc được gói ghém bằng tất cả sự chân thành.</p>
+      </div>
+      <button class="gift" id="giftBtn" type="button" aria-label="Mở hộp quà bất ngờ">
+        <span class="box-body"></span><span class="box-ribbon"></span><span class="box-lid"></span><span class="bow"></span>
+      </button>
+      <p class="gift-hint">Nhấn vào hộp quà để mở món quà dành cho chị ✧</p>
+      <div class="surprise" id="surprise" role="status">
+        <h3>Chúc Chị Nhi luôn tỏa sáng 🌹</h3>
+        <p>
+          Chúc chị một ngày 20/10 thật đẹp, một trái tim luôn bình yên và một hành trình đầy những điều đáng mong chờ.
+          Mong chị luôn được trân trọng, được lắng nghe, được yêu thương và đủ tự tin để theo đuổi mọi điều mình ấp ủ.
+          Dù cuộc sống có bận rộn đến đâu, hy vọng chị vẫn dành thời gian cho bản thân, cho những niềm vui nhỏ
+          và cho những người khiến chị cảm thấy mình thật đặc biệt. Chúc chị luôn hạnh phúc, hôm nay và mỗi ngày! 💗
+        </p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="fireworksBtn" type="button">🎆 Bắn pháo hoa chúc mừng</button>
+        <button class="btn ghost" id="heartBtn" type="button">♡ Gửi ngàn trái tim</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Made with love for <strong>Chị Nhi</strong><br>
+  <span>Chúc mừng ngày Phụ nữ Việt Nam 20/10 · Luôn rạng rỡ theo cách của riêng mình.</span>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+
+/* ===== MẬT KHẨU 4 SỐ =====
+   Mật khẩu mặc định: 2010
+   Muốn đổi, sửa giá trị PASSCODE bên dưới thành chuỗi 4 số khác.
+*/
+const PASSCODE = '2711';
+const lockScreen = document.getElementById('lockScreen');
+const lockCard = lockScreen.querySelector('.lock-card');
+const lockError = document.getElementById('lockError');
+const pinDots = [0,1,2,3].map(i => document.getElementById('dot'+i));
+let enteredPin = '';
+
+document.body.classList.add('locked');
+function updatePinDots(){
+  pinDots.forEach((dot,i)=>dot.classList.toggle('filled',i<enteredPin.length));
+}
+function clearPin(){
+  enteredPin='';
+  updatePinDots();
+}
+function wrongPin(){
+  lockError.textContent='Mật mã chưa đúng, bạn thử lại nhé!';
+  lockCard.classList.remove('shake');
+  void lockCard.offsetWidth;
+  lockCard.classList.add('shake');
+  clearPin();
+}
+function submitPin(){
+  if(enteredPin===PASSCODE){
+    lockError.textContent='Mở quà thành công. Chúc chị 20/10 thật vui! ♡';
+    lockScreen.classList.add('unlocked');
+    document.body.classList.remove('locked');
+    setTimeout(()=>lockScreen.remove(),700);
+    // Chạy một màn pháo hoa nhẹ sau khi nhập đúng.
+    setTimeout(()=>{
+      if(typeof fireworksShow==='function')fireworksShow();
+      if(typeof toast==='function')toast('Chào mừng Chị Nhi đến với món quà 20/10 🌹');
+    },750);
+  }else wrongPin();
+}
+function addDigit(digit){
+  if(enteredPin.length>=4)return;
+  enteredPin+=digit;
+  lockError.textContent='';
+  updatePinDots();
+  if(enteredPin.length===4)setTimeout(submitPin,180);
+}
+document.getElementById('keypad').addEventListener('click',event=>{
+  const button=event.target.closest('button');
+  if(!button)return;
+  if(button.dataset.digit!==undefined)addDigit(button.dataset.digit);
+  else if(button.dataset.action==='clear'){clearPin();lockError.textContent='';}
+  else if(button.dataset.action==='back'){enteredPin=enteredPin.slice(0,-1);lockError.textContent='';updatePinDots();}
+});
+document.addEventListener('keydown',event=>{
+  if(!document.getElementById('lockScreen'))return;
+  if(/^[0-9]$/.test(event.key))addDigit(event.key);
+  else if(event.key==='Backspace'){enteredPin=enteredPin.slice(0,-1);updatePinDots();lockError.textContent='';}
+  else if(event.key==='Escape'){clearPin();lockError.textContent='';}
+});
+
+/* ===== LỜI CHÚC HIỆN DẦN ===== */
+const message = `Chị Nhi thân mến,
+
+Nhân ngày Phụ nữ Việt Nam 20/10, chúc chị luôn xinh đẹp, tự tin, bình an và gặp thật nhiều may mắn. Mong mỗi ngày của chị đều có những niềm vui nhỏ, những người bạn chân thành và những cơ hội tuyệt vời để làm điều mình yêu thích.
+
+Chúc chị luôn mạnh mẽ khi cần, dịu dàng với chính mình và đủ can đảm để theo đuổi mọi ước mơ. Mong những nỗ lực của chị được đền đáp, những điều tốt đẹp luôn tìm đến và nụ cười sẽ luôn ở lại thật lâu trên môi chị.
+
+Chúc chị một mùa 20/10 ngập tràn hoa hồng, yêu thương và những khoảnh khắc đáng nhớ!`;
+const letterText = document.getElementById('letterText');
+let hasTyped = false;
+function typeMessage(){
+  if(hasTyped)return; hasTyped=true;
+  let i=0;
+  const timer=setInterval(()=>{
+    letterText.textContent += message[i++];
+    if(i>=message.length)clearInterval(timer);
+  },24);
+}
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+    if(entries.some(e=>e.isIntersecting)){typeMessage();observer.disconnect();}
+  },{threshold:.18});
+  observer.observe(document.getElementById('loi-chuc'));
+}else typeMessage();
+
+/* ===== CÁNH HOA HỒNG LỚN RƠI ===== */
+const petalsLayer=document.getElementById('petals');
+const petalSymbols=['🌹','🌸','🥀','🌺'];
+function makePetal(){
+  const p=document.createElement('span');p.className='petal';
+  p.textContent=petalSymbols[Math.floor(Math.random()*petalSymbols.length)];
+  const size=34+Math.random()*48;
+  p.style.left=(Math.random()*100)+'vw';
+  p.style.fontSize=size+'px';
+  p.style.setProperty('--drift',(Math.random()*260-130)+'px');
+  p.style.setProperty('--spin',(Math.random()*900-450)+'deg');
+  p.style.animationDuration=(9+Math.random()*10)+'s';
+  petalsLayer.appendChild(p);
+  setTimeout(()=>p.remove(),20000);
+}
+for(let i=0;i<12;i++)setTimeout(makePetal,i*450);
+setInterval(makePetal,950);
+
+/* ===== NHẠC NỀN TẠO BẰNG WEB AUDIO ===== */
+let audioCtx=null,master=null,musicTimer=null,musicOn=false,note=0;
+const notes=[392,493.88,587.33,493.88,440,523.25,659.25,523.25,392,493.88,587.33,783.99,659.25,587.33,493.88,440];
+const musicBtn=document.getElementById('musicBtn');
+function playNote(freq,duration=.68){
+  if(!audioCtx||!master)return;
+  const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+  osc.type='sine';osc.frequency.value=freq;
+  const now=audioCtx.currentTime;
+  gain.gain.setValueAtTime(.0001,now);
+  gain.gain.exponentialRampToValueAtTime(.045,now+.07);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+  osc.connect(gain);gain.connect(master);osc.start(now);osc.stop(now+duration+.03);
+}
+async function toggleMusic(){
+  if(musicOn){
+    musicOn=false;clearInterval(musicTimer);
+    if(master&&audioCtx)master.gain.setTargetAtTime(.0001,audioCtx.currentTime,.1);
+    musicBtn.textContent='♫ Bật nhạc nền';musicBtn.setAttribute('aria-pressed','false');
+    toast('Đã tắt nhạc nền');return;
+  }
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)throw new Error('Unsupported');
+    if(!audioCtx){audioCtx=new AC();master=audioCtx.createGain();master.gain.value=.35;master.connect(audioCtx.destination);}
+    await audioCtx.resume();master.gain.setTargetAtTime(.35,audioCtx.currentTime,.1);
+    musicOn=true;playNote(notes[note++%notes.length]);
+    musicTimer=setInterval(()=>{if(musicOn)playNote(notes[note++%notes.length]);},720);
+    musicBtn.textContent='♫ Tắt nhạc nền';musicBtn.setAttribute('aria-pressed','true');
+    toast('Giai điệu dịu dàng đã vang lên ♫');
+  }catch(e){toast('Trình duyệt không hỗ trợ phát nhạc.');}
+}
+musicBtn.addEventListener('click',toggleMusic);
+
+/* ===== PHÁO HOA CANVAS ===== */
+const canvas=document.getElementById('fireworks'),ctx=canvas.getContext('2d');
+let particles=[],rafActive=false;
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;
+  canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+addEventListener('resize',resize);resize();
+function burst(x,y){
+  const colors=['#f1d995','#fff1e1','#ed789e','#d94c77','#f7b9c8','#ffffff'];
+  for(let i=0;i<90;i++){
+    const a=Math.random()*Math.PI*2,s=1+Math.random()*4.8;
+    particles.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1,decay:.008+Math.random()*.014,
+      size:1.2+Math.random()*3,color:colors[Math.floor(Math.random()*colors.length)]});
+  }
+  if(!rafActive){rafActive=true;requestAnimationFrame(draw);}
+}
+function draw(){
+  ctx.clearRect(0,0,innerWidth,innerHeight);
+  particles=particles.filter(p=>p.life>0);
+  for(const p of particles){
+    p.x+=p.vx;p.y+=p.vy;p.vx*=.986;p.vy=p.vy*.986+.025;p.life-=p.decay;
+    ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalAlpha=1;
+  if(particles.length)requestAnimationFrame(draw);else{rafActive=false;ctx.clearRect(0,0,innerWidth,innerHeight);}
+}
+function fireworksShow(){
+  burst(innerWidth*.25,innerHeight*.28);
+  setTimeout(()=>burst(innerWidth*.72,innerHeight*.24),220);
+  setTimeout(()=>burst(innerWidth*.5,innerHeight*.38),480);
+  hearts(18);toast('Một bầu trời lấp lánh dành tặng Chị Nhi ✨');
+}
+document.getElementById('fireworksBtn').addEventListener('click',fireworksShow);
+document.getElementById('heroFireworks').addEventListener('click',fireworksShow);
+
+/* ===== TRÁI TIM BAY ===== */
+const heartsLayer=document.getElementById('hearts');
+function hearts(count=18){
+  for(let i=0;i<count;i++)setTimeout(()=>{
+    const h=document.createElement('span');h.className='heart';
+    h.textContent=['💗','💖','💕','💘','♥'][Math.floor(Math.random()*5)];
+    h.style.left=Math.random()*100+'vw';h.style.fontSize=(20+Math.random()*30)+'px';
+    h.style.animationDuration=(2.8+Math.random()*2)+'s';
+    heartsLayer.appendChild(h);setTimeout(()=>h.remove(),5200);
+  },i*100);
+}
+document.getElementById('heartBtn').addEventListener('click',()=>{hearts(35);toast('Gửi đến chị thật nhiều yêu thương ♡');});
+
+/* ===== MỞ QUÀ ===== */
+const giftBtn=document.getElementById('giftBtn'),surprise=document.getElementById('surprise');
+giftBtn.addEventListener('click',()=>{
+  const opened=surprise.classList.toggle('show');
+  giftBtn.setAttribute('aria-label',opened?'Đóng lời chúc':'Mở hộp quà bất ngờ');
+  if(opened){fireworksShow();surprise.scrollIntoView({behavior:'smooth',block:'center'});}
+});
+
+/* ===== THÔNG BÁO ===== */
+const toastEl=document.getElementById('toast');let toastTimeout;
+function toast(text){
+  toastEl.textContent=text;toastEl.classList.add('show');clearTimeout(toastTimeout);
+  toastTimeout=setTimeout(()=>toastEl.classList.remove('show'),2800);
+}
+
+/* Click nền tạo một tia pháo hoa nhỏ, không chặn nút hoặc liên kết. */
+document.addEventListener('click',e=>{
+  if(e.target.closest('button,a'))return;
+  burst(e.clientX,e.clientY);
+});
+</script>
+</body>
+</html>
